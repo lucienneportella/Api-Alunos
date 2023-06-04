@@ -9,10 +9,9 @@ import lombok.ToString;
 @ToString
 public class AlunoRequestDto {
 	
-	private Long id;
 	private String nome;
 	private int idade;
 	private String turma;
-	private Long idResponsavel;
+	private Long id_responsavel;
 
 }

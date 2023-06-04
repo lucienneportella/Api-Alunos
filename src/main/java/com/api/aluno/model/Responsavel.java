@@ -24,7 +24,7 @@ public class Responsavel {
 	private Long id;
 	private String email;
 	private String telefone;
-	@OneToMany(mappedBy = "responsavel")
+	@OneToMany
 	private List<Aluno> alunos;
 
 }
