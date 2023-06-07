@@ -30,8 +30,8 @@ public class AlunoController {
 	}
 	
 	@GetMapping("id/{id}")
-	public AlunoResponseDto pegarUmAluno(@PathVariable("id") Long id) {
-		return service.pegarUmAluno(id);
+	public AlunoResponseDto buscarAluno(@PathVariable("id") Long id) {
+		return service.buscarAluno(id);
 		
 	}
 	

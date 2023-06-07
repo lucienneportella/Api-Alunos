@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class ResponsavelRequestDto {
 	
+	private String nome;
 	private String email;
 	private String telefone;
 	List<AlunoResponseDto> alunos;

@@ -12,6 +12,7 @@ import lombok.ToString;
 public class ResponsavelResponse {
 	
 	private Long id;
+	private String nome;
 	private String email;
 	private String telefone;
 	private List<AlunoResponseDto> alunos;

@@ -43,7 +43,7 @@ public class AlunoService {
 		
 	}
 	
-	public AlunoResponseDto pegarUmAluno(Long id) {
+	public AlunoResponseDto buscarAluno(Long id) {
 		
 		Optional<Aluno> op = alunoRepository.findById(id);
 		Aluno alunoBanco = op.get();
