@@ -1,7 +1,5 @@
 package com.api.aluno.dto;
 
-import javax.persistence.JoinColumn;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

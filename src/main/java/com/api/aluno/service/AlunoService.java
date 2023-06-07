@@ -11,8 +11,6 @@ import com.api.aluno.model.Responsavel;
 import com.api.aluno.repository.AlunoRepository;
 import com.api.aluno.repository.ResponsavelRepository;
 
-import lombok.extern.log4j.Log4j2;
-@Log4j2
 @Service
 public class AlunoService {
 	
@@ -32,7 +30,6 @@ public class AlunoService {
 		Aluno aluno = mapper.map(alunoRequest, Aluno.class);
 		Aluno alunoBanco = aluno;
 		
-		log.info("RESPONSÁVEL: {}", alunoRequest.getId_responsavel());
 		Optional<Responsavel> op = responsavelRepository.findById(alunoRequest.getId_responsavel());
 		
 
@@ -46,6 +43,21 @@ public class AlunoService {
 		
 	}
 	
+	public AlunoResponseDto pegarUmAluno(Long id) {
+		
+		Optional<Aluno> op = alunoRepository.findById(id);
+		Aluno alunoBanco = op.get();
+		
+		alunoRepository.save(alunoBanco);
+		
+		return mapper.map(alunoBanco, AlunoResponseDto.class);
+		
+	}
+	
+	public void excluir(Long id) {
+		alunoRepository.deleteById(id);
+		
+	}
 	
 	
 
