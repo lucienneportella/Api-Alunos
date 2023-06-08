@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.api.aluno.dto.AlunoRequestDto;
 import com.api.aluno.dto.AlunoResponseDto;
+import com.api.aluno.exception.ErroDeNegocioExcpion;
+import com.api.aluno.exception.TabelaDeErros;
 import com.api.aluno.model.Aluno;
 import com.api.aluno.model.Responsavel;
 import com.api.aluno.repository.AlunoRepository;
@@ -32,10 +34,11 @@ public class AlunoService {
 		
 		Optional<Responsavel> op = responsavelRepository.findById(alunoRequest.getId_responsavel());
 		
-
+		if(!op.isPresent()) {
+			throw new ErroDeNegocioExcpion(TabelaDeErros.RESPONSAVEL_NAO_ENCONTRADO);
+		}
+	
 		Responsavel responsavel = op.get();
-		
-		
 		alunoBanco.setResponsavel(responsavel);
 		alunoRepository.save(alunoBanco);
 		
@@ -46,8 +49,12 @@ public class AlunoService {
 	public AlunoResponseDto buscarAluno(Long id) {
 		
 		Optional<Aluno> op = alunoRepository.findById(id);
-		Aluno alunoBanco = op.get();
 		
+		if(!op.isPresent()) {
+			throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);
+		}
+		
+		Aluno alunoBanco = op.get();
 		alunoRepository.save(alunoBanco);
 		
 		return mapper.map(alunoBanco, AlunoResponseDto.class);
@@ -55,7 +62,14 @@ public class AlunoService {
 	}
 	
 	public void excluir(Long id) {
+		
+		 Optional<Aluno> op = alunoRepository.findById(id);
+		 
+		 if(!op.isPresent()) {
+			 throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);
+		 }
 		alunoRepository.deleteById(id);
+
 		
 	}
 	
