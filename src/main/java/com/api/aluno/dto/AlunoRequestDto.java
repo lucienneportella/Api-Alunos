@@ -2,7 +2,8 @@ package com.api.aluno.dto;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @ToString
 public class AlunoRequestDto {
 	
-	@NotNull(message = "nome é obrigatório")
+	@NotEmpty(message = "nome é obrigatório")
 	private String nome;
 	@Min(value = 12, message = "o valor minímo é 12")
 	@Max(value = 18, message = "o valor máximo é 18")
