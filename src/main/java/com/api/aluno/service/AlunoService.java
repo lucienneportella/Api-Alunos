@@ -46,9 +46,11 @@ public class AlunoService {
 		
 	}
 	
-	public AlunoResponseDto buscarAluno(Long id) {
-		
-		Optional<Aluno> op = alunoRepository.findById(id);
+
+	
+	
+	public AlunoResponseDto buscarPorNome(String nome) {
+		Optional<Aluno> op = alunoRepository.findByNome(nome);
 		
 		if(!op.isPresent()) {
 			throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);
