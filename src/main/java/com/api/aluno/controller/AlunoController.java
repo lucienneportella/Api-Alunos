@@ -1,5 +1,7 @@
 package com.api.aluno.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,7 @@ public class AlunoController {
 
 	
 	@GetMapping("nome/{nome}")
-	public AlunoResponseDto buscarPorNome(@PathVariable("nome") String nome) {
+	public List<AlunoResponseDto> buscarPorNome(@PathVariable("nome") String nome) {
 		return service.buscarPorNome(nome);
 	}
 	@DeleteMapping("/id/{id}")

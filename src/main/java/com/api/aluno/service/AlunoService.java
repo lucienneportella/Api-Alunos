@@ -1,7 +1,9 @@
 package com.api.aluno.service;
 
+import java.util.List;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.api.aluno.dto.AlunoRequestDto;
@@ -49,17 +51,18 @@ public class AlunoService {
 
 	
 	
-	public AlunoResponseDto buscarPorNome(String nome) {
-		Optional<Aluno> op = alunoRepository.findByNome(nome);
+	public List<AlunoResponseDto> buscarPorNome(String nome) {
+		List<Aluno> alunos = alunoRepository.findByNome(nome);
 		
-		if(!op.isPresent()) {
-			throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);
-		}
+//		if(!op.isPresent()) {
+//			throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);
+//		}
+//		
+//		Aluno alunoBanco = op.get();
+//		alunoRepository.save(op);
+		List<AlunoResponseDto> alunoResponse = mapper.map(alunos, new TypeToken<List<AlunoResponseDto>>(){}.getType());
+		return alunoResponse;
 		
-		Aluno alunoBanco = op.get();
-		alunoRepository.save(alunoBanco);
-		
-		return mapper.map(alunoBanco, AlunoResponseDto.class);
 		
 	}
 	
