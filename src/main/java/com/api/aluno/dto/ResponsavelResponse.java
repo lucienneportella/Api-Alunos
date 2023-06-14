@@ -2,6 +2,8 @@ package com.api.aluno.dto;
 
 import java.util.List;
 
+import com.api.aluno.model.Aluno;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,6 +17,6 @@ public class ResponsavelResponse {
 	private String nome;
 	private String email;
 	private String telefone;
-	private List<AlunoResponseDto> alunos;
+	private Aluno aluno_id;
 
 }

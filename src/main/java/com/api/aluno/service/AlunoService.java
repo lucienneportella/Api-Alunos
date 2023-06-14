@@ -34,14 +34,14 @@ public class AlunoService {
 		Aluno aluno = mapper.map(alunoRequest, Aluno.class);
 		Aluno alunoBanco = aluno;
 		
-		Optional<Responsavel> op = responsavelRepository.findById(alunoRequest.getId_responsavel());
-		
-		if(!op.isPresent()) {
-			throw new ErroDeNegocioExcpion(TabelaDeErros.RESPONSAVEL_NAO_ENCONTRADO);
-		}
+//		Optional<Responsavel> op = responsavelRepository.findById(alunoRequest.getId_responsavel());
+//		
+//		if(!op.isPresent()) {
+//			throw new ErroDeNegocioExcpion(TabelaDeErros.RESPONSAVEL_NAO_ENCONTRADO);
+//		}
 	
-		Responsavel responsavel = op.get();
-		alunoBanco.setResponsavel(responsavel);
+//		Responsavel responsavel = op.get();
+//		alunoBanco.setResponsavel(responsavel);
 		alunoRepository.save(alunoBanco);
 		
 		return mapper.map(alunoBanco, AlunoResponseDto.class);
@@ -53,13 +53,6 @@ public class AlunoService {
 	
 	public List<AlunoResponseDto> buscarPorNome(String nome) {
 		List<Aluno> alunos = alunoRepository.findByNome(nome);
-		
-//		if(!op.isPresent()) {
-//			throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);
-//		}
-//		
-//		Aluno alunoBanco = op.get();
-//		alunoRepository.save(op);
 		List<AlunoResponseDto> alunoResponse = mapper.map(alunos, new TypeToken<List<AlunoResponseDto>>(){}.getType());
 		return alunoResponse;
 		

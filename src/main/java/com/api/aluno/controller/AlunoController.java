@@ -43,6 +43,7 @@ public class AlunoController {
 	public List<AlunoResponseDto> buscarPorNome(@PathVariable("nome") String nome) {
 		return service.buscarPorNome(nome);
 	}
+	
 	@DeleteMapping("/id/{id}")
 	public void excluir(@PathVariable("id") Long id) {
 		service.excluir(id);
