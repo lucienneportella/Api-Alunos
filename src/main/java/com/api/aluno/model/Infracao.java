@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,8 +23,9 @@ public class Infracao {
 	private Long id;
 	private LocalDate data;
 	private String descricao;
-    @ManyToOne()
-   @JoinColumn(name = "aluno_id")
+	@ManyToOne
+	@JoinColumn(name = "aluno_id")
 	private Aluno aluno;
+  
 
 }
