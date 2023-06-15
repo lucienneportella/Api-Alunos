@@ -7,11 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,8 +30,7 @@ public class Aluno {
 	private int idade;
 	private String turma;
 	
-	@OneToOne
-	@Cascade(CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "responsavel_id")
 	private Responsavel responsavel;
 	

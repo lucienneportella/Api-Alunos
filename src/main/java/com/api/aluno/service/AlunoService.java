@@ -34,14 +34,14 @@ public class AlunoService {
 		Aluno aluno = mapper.map(alunoRequest, Aluno.class);
 		Aluno alunoBanco = aluno;
 		
-//		Optional<Responsavel> op = responsavelRepository.findById(alunoRequest.getId_responsavel());
-//		
-//		if(!op.isPresent()) {
-//			throw new ErroDeNegocioExcpion(TabelaDeErros.RESPONSAVEL_NAO_ENCONTRADO);
-//		}
+		Optional<Responsavel> op = responsavelRepository.findById(alunoRequest.getIdResponsavel());
 	
-//		Responsavel responsavel = op.get();
-//		alunoBanco.setResponsavel(responsavel);
+		if(!op.isPresent()) {
+			throw new ErroDeNegocioExcpion(TabelaDeErros.RESPONSAVEL_NAO_ENCONTRADO);
+		}
+	
+		Responsavel responsavel = op.get();
+		alunoBanco.setResponsavel(responsavel);
 		alunoRepository.save(alunoBanco);
 		
 		return mapper.map(alunoBanco, AlunoResponseDto.class);
