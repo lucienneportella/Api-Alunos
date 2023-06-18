@@ -14,6 +14,6 @@ public class AlunoResponseDto {
 	private int idade;
 	private String turma;
 	
-	private ResponsavelResponse responsavel;
+
 
 }

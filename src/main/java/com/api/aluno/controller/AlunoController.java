@@ -27,9 +27,6 @@ public class AlunoController {
 	@Autowired
 	private AlunoService service;
 	
-
-	
-	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public AlunoResponseDto criar(@Valid @RequestBody AlunoRequestDto alunoRequest) {

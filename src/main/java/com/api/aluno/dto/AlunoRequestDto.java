@@ -21,7 +21,7 @@ public class AlunoRequestDto {
 	@Max(value = 18, message = "o valor máximo é 18")
 	private int idade;
 	private String turma;
-	@Min(value = 1, message = "o id nao pode ser menor que 1")
-	private Long idResponsavel;
+	private String emailResponsavel;
+
 
 }
