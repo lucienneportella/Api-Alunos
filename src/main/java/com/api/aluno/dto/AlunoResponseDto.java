@@ -13,6 +13,7 @@ public class AlunoResponseDto {
 	private String nome;
 	private int idade;
 	private String turma;
+	private String email_responsavel;
 	
 
 

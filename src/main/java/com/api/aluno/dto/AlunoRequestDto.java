@@ -1,10 +1,8 @@
 package com.api.aluno.dto;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -21,7 +19,7 @@ public class AlunoRequestDto {
 	@Max(value = 18, message = "o valor máximo é 18")
 	private int idade;
 	private String turma;
-	private String emailResponsavel;
+	private String email_responsavel;
 
 
 }

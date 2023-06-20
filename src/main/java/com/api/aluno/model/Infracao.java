@@ -1,7 +1,11 @@
 package com.api.aluno.model;
 
 import java.time.LocalDate;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
+@Entity(name = "infracao")
 @Getter
 @Setter
 @ToString
@@ -21,11 +25,22 @@ public class Infracao {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate data;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "id_tipo_infracao")
+	private EnumInfracao tipoInfracao;
+	
+
+	
 	private String descricao;
+	@Column(name = "data_infracoes")
+	private LocalDate data = LocalDate.now();
+	
 	@ManyToOne
-	@JoinColumn(name = "aluno_id")
+	@JoinColumn(name = "id_aluno")
 	private Aluno aluno;
+	
+	
   
 
 }
