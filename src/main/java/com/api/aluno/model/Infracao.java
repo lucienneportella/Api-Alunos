@@ -30,8 +30,6 @@ public class Infracao {
 	@Column(name = "id_tipo_infracao")
 	private EnumInfracao tipoInfracao;
 	
-
-	
 	private String descricao;
 	@Column(name = "data_infracoes")
 	private LocalDate data = LocalDate.now();

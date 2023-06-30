@@ -6,6 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.api.aluno.dto.AlterarAlunoDto;
 import com.api.aluno.dto.AlunoRequestDto;
 import com.api.aluno.dto.AlunoResponseDto;
 import com.api.aluno.exception.ErroDeNegocioExcpion;
@@ -22,6 +24,7 @@ public class AlunoService {
 	@Autowired
 	private ModelMapper mapper;
 	
+	//nao posso excluir ou alterar um aluno que já possui um relacionamento com a tabela infração
 
 	
 	public AlunoResponseDto criar(AlunoRequestDto alunoRequest) {
@@ -34,7 +37,23 @@ public class AlunoService {
 	}
 	
 
-	
+	public AlunoResponseDto altualizarDados(Long id, AlterarAlunoDto alunoDto) {
+		Optional<Aluno> optional = alunoRepository.findById(id);
+		
+		if(!optional.isPresent()) {
+			//lança excessao
+		}
+		
+		Aluno aluno = optional.get();
+		Aluno alunoAlterar =  mapper.map(alunoDto, Aluno.class);
+		
+		aluno.setTurma(alunoAlterar.getTurma());
+		aluno.setEmail_responsavel(alunoAlterar.getEmail_responsavel());
+		
+		alunoRepository.save(aluno);
+		
+		return mapper.map(aluno, AlunoResponseDto.class);
+	}
 	
 	public List<AlunoResponseDto> buscarPorNome(String nome) {
 		List<Aluno> alunos = alunoRepository.findByNome(nome);

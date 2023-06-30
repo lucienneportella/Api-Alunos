@@ -29,8 +29,6 @@ public class InfracaoService {
 	 public InfracaoResponse criar(InfracaoRequest infracaoRequest) {
 		 Infracao infracao = mapper.map(infracaoRequest, Infracao.class);
 		 
-		
-		 
 		 Optional<Aluno> optional = alunoRepository.findById(infracaoRequest.getIdAluno());
 		 
 		 if (!optional.isPresent()) {
@@ -41,7 +39,6 @@ public class InfracaoService {
 		 
 		 infracao.setAluno(alunoBanco);
 		 
-		 //Infracao infracaoBanco = infracao;
 		 
 		 repository.save(infracao);
 		 
