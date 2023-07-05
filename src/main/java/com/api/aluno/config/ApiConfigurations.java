@@ -14,10 +14,9 @@ public class ApiConfigurations {
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		mapper.getConfiguration().setAmbiguityIgnored(true);
 		
-		
-		
-		
 		return mapper;
 	}
+	
+	
 
 }

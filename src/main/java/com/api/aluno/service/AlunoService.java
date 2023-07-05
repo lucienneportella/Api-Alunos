@@ -55,6 +55,7 @@ public class AlunoService {
 		return mapper.map(aluno, AlunoResponseDto.class);
 	}
 	
+	//arrumar exceção para quando aluno não for encontrado
 	public List<AlunoResponseDto> buscarPorNome(String nome) {
 		List<Aluno> alunos = alunoRepository.findByNome(nome);
 		List<AlunoResponseDto> alunoResponse = mapper.map(alunos, new TypeToken<List<AlunoResponseDto>>(){}.getType());
@@ -70,6 +71,7 @@ public class AlunoService {
 		 if(!op.isPresent()) {
 			 throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);
 		 }
+		 
 		alunoRepository.deleteById(id);
 
 		
