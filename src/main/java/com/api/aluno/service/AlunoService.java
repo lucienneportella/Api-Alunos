@@ -13,7 +13,9 @@ import com.api.aluno.dto.AlunoResponseDto;
 import com.api.aluno.exception.ErroDeNegocioExcpion;
 import com.api.aluno.exception.TabelaDeErros;
 import com.api.aluno.model.Aluno;
+import com.api.aluno.model.Infracao;
 import com.api.aluno.repository.AlunoRepository;
+import com.api.aluno.repository.InfracaoRepository;
 
 
 @Service
@@ -22,7 +24,10 @@ public class AlunoService {
 	@Autowired
 	private AlunoRepository alunoRepository;
 	@Autowired
+	private InfracaoRepository infracaoRepository;
+	@Autowired
 	private ModelMapper mapper;
+	
 	
 	//nao posso excluir ou alterar um aluno que já possui um relacionamento com a tabela infração
 
@@ -65,8 +70,13 @@ public class AlunoService {
 	}
 	
 	public void excluir(Long id) {
-		
 		 Optional<Aluno> op = alunoRepository.findById(id);
+		  Aluno aluno = op.get();
+		 List<Infracao> infracao = infracaoRepository.findByAluno(aluno);
+		
+		 if(!infracao.isEmpty()) {
+			 throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_VINCULADO_INFRACAO);
+		 }
 		 
 		 if(!op.isPresent()) {
 			 throw new ErroDeNegocioExcpion(TabelaDeErros.ALUNO_NAO_ENCONTRADO);

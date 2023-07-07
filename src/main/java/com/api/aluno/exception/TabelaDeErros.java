@@ -11,6 +11,7 @@ public enum TabelaDeErros {
 	
 	ERRO_DE_VALIDACAO(HttpStatus.BAD_REQUEST, "Dados de requisição inválidos"),
 	ALUNO_NAO_ENCONTRADO(HttpStatus.NOT_FOUND, "aluno não encontrado"),
+	ALUNO_VINCULADO_INFRACAO(HttpStatus.BAD_REQUEST, "Aluno vinculado a uma Infração"),
 	RESPONSAVEL_NAO_ENCONTRADO(HttpStatus.NOT_FOUND, "responsavl nao encontrado");
 	
 	
